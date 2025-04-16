@@ -46,6 +46,8 @@ dependencies:
   calendar_agenda:
     path: dev_lib/calendar_agenda/
   shared_preferences: ^2.5.3
+  calendar_view: ^1.4.0
+  flutter_colorpicker: ^1.1.0
 
 
 flutter_native_splash:

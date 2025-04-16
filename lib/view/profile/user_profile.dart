@@ -193,8 +193,15 @@ class _UserProfileState extends State<UserProfile> {
                       );
                     }
                   }),
-              SizedBox(
-                  height: 15,
+              SizedBox(height: 15),
+              Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 200,
+                  ),
+                  //    color: Colors.red,
+                  // width: 15,
+                  //height: MediaQuery.of(context).size.height * 0.06,
                   child: RoundButton(
                     title: "Редактировать",
                     type: RoundButtonType.primaryBG,
@@ -206,34 +213,79 @@ class _UserProfileState extends State<UserProfile> {
                       ).then((_) {});
                     },
                   )),
-              const Row(
-                children: [
-                  Expanded(
-                    child: TitleSubtitleCell(
-                      title: "180см",
-                      subtitle: "Рост",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TitleSubtitleCell(
-                      title: "65кг",
-                      subtitle: "Вес",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TitleSubtitleCell(
-                      title: "22 года",
-                      subtitle: "Возраст",
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(height: 15),
+              FutureBuilder<SharedPreferences>(
+                  future: _prefsFuture,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+                    print("here");
+                    final prefs = snapshot.data!;
+                    //if(prefs!=null)
+                    if (prefs.getString("userProfile") != null) {
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: jsonDecode(prefs.getString('userProfile')
+                                  as String)['height'],
+                              subtitle: "Рост",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: jsonDecode(prefs.getString('userProfile')
+                                  as String)['weight'],
+                              subtitle: "Вес",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: jsonDecode(prefs.getString('userProfile')
+                                  as String)['age'],
+                              subtitle: "Возраст",
+                            ),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: "180см",
+                              subtitle: "Рост",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: "65кг",
+                              subtitle: "Вес",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                            child: TitleSubtitleCell(
+                              title: "22 года",
+                              subtitle: "Возраст",
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  }),
               const SizedBox(
                 height: 25,
               ),

@@ -13,7 +13,7 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   List photoArr = [
     {
-      "time": "2 June",
+      "time": "Сладкое",
       "photo": [
         "assets/images/pp_1.png",
         "assets/images/pp_2.png",
@@ -22,7 +22,7 @@ class _CameraScreenState extends State<CameraScreen> {
       ]
     },
     {
-      "time": "5 May",
+      "time": "Бобовые",
       "photo": [
         "assets/images/pp_5.png",
         "assets/images/pp_6.png",
@@ -43,30 +43,12 @@ class _CameraScreenState extends State<CameraScreen> {
         leadingWidth: 0,
         leading: const SizedBox(),
         title: Text(
-          "Progress Photo",
+          "Дневник",
           style: TextStyle(
-              color: AppColors.blackColor, fontSize: 16, fontWeight: FontWeight.w700),
+              color: AppColors.blackColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w700),
         ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppColors.lightGrayColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.asset(
-                "assets/icons/more_icon.png",
-                width: 15,
-                height: 15,
-                fit: BoxFit.contain,
-              ),
-            ),
-          )
-        ],
       ),
       backgroundColor: AppColors.whiteColor,
       body: SingleChildScrollView(
@@ -76,9 +58,9 @@ class _CameraScreenState extends State<CameraScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                /*Padding(
                   padding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Container(
                     width: double.maxFinite,
                     padding: const EdgeInsets.all(15),
@@ -103,7 +85,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         const SizedBox(
                           width: 8,
                         ),
-                        Expanded(
+                         Expanded(
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -136,10 +118,10 @@ class _CameraScreenState extends State<CameraScreen> {
                       ],
                     ),
                   ),
-                ),
+                ),*/
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Container(
                     width: double.maxFinite,
                     padding: const EdgeInsets.all(20),
@@ -160,7 +142,7 @@ class _CameraScreenState extends State<CameraScreen> {
                                 height: 15,
                               ),
                               Text(
-                                "Track Your Progress Each\nMonth With Photo",
+                                "Следите за информацией в календаре",
                                 style: TextStyle(
                                   color: AppColors.blackColor,
                                   fontSize: 12,
@@ -171,8 +153,7 @@ class _CameraScreenState extends State<CameraScreen> {
                                 width: 110,
                                 height: 35,
                                 child: RoundButton(
-                                    title: "Learn More",
-                                    onPressed: () {}),
+                                    title: "Подробнее", onPressed: () {}),
                               )
                             ]),
                         Image.asset(
@@ -186,7 +167,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 SizedBox(
                   height: media.width * 0.05,
                 ),
-                Container(
+                /* Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding:
                   const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -222,26 +203,20 @@ class _CameraScreenState extends State<CameraScreen> {
                       )
                     ],
                   ),
-                ),
+                ),*/
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Gallery",
+                        "Продукты",
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,
                             fontWeight: FontWeight.w700),
                       ),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "See more",
-                            style: TextStyle(color: AppColors.grayColor, fontSize: 12),
-                          ))
                     ],
                   ),
                 ),
@@ -261,8 +236,8 @@ class _CameraScreenState extends State<CameraScreen> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               pObj["time"].toString(),
-                              style:
-                              TextStyle(color: AppColors.grayColor, fontSize: 12),
+                              style: TextStyle(
+                                  color: AppColors.grayColor, fontSize: 12),
                             ),
                           ),
                           SizedBox(
@@ -274,7 +249,7 @@ class _CameraScreenState extends State<CameraScreen> {
                               itemBuilder: ((context, indexRow) {
                                 return Container(
                                   margin:
-                                  const EdgeInsets.symmetric(horizontal: 4),
+                                      const EdgeInsets.symmetric(horizontal: 4),
                                   width: 100,
                                   decoration: BoxDecoration(
                                     color: AppColors.lightGrayColor,

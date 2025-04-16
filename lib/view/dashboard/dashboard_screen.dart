@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fitnessapp/common_widgets/calend/main.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/activity/activity_screen.dart';
 import 'package:fitnessapp/view/camera/camera_screen.dart';
@@ -33,7 +34,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: AppColors.whiteColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: InkWell(
-        onTap: () {},
+        onTap: () async {
+          print('a');
+          final result = await Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => CalMyApp()),
+          );
+        },
         child: SizedBox(
           width: 70,
           height: 70,
@@ -46,8 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 boxShadow: const [
                   BoxShadow(color: Colors.black12, blurRadius: 2)
                 ]),
-            child: const Icon(Icons.search_sharp,
-                color: AppColors.whiteColor, size: 32),
+            child: const Icon(Icons.add, color: AppColors.whiteColor, size: 32),
           ),
         ),
       ),
@@ -65,9 +70,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               color: AppColors.whiteColor,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 2,
-                    offset: Offset(0, -2))
+                    color: Colors.black12, blurRadius: 2, offset: Offset(0, -2))
               ]),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
