@@ -27,7 +27,7 @@ String dateToString(DateTime date, {String formatStr = "dd/MM/yyyy hh:mm a"}) {
   return format.format(date);
 }
 
-String getDayTitle(String dateStr, {String formatStr = "dd/MM/yyyy hh:mm a"} ) {
+String getDayTitle(String dateStr, {String formatStr = "dd/MM/yyyy hh:mm a"}) {
   var date = stringToDate(dateStr, formatStr: formatStr);
 
   if (date.isToday) {
@@ -38,7 +38,7 @@ String getDayTitle(String dateStr, {String formatStr = "dd/MM/yyyy hh:mm a"} ) {
     return "Yesterday";
   } else {
     var outFormat = DateFormat("E");
-    return outFormat.format(date) ;
+    return outFormat.format(date);
   }
 }
 

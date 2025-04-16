@@ -7,14 +7,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
-
 import '../../common_widgets/round_button.dart';
 import '../../common_widgets/round_gradient_button.dart';
 import '../notification/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "/HomeScreen";
-
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,9 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<int> showingTooltipOnSpots = [21];
-
   List<FlSpot> get allSpots => const [
         FlSpot(0, 20),
         FlSpot(1, 25),
@@ -60,79 +56,79 @@ class _HomeScreenState extends State<HomeScreen> {
       ];
 
   List waterArr = [
-    {"title": "6am - 8am", "subtitle": "600ml"},
-    {"title": "9am - 11am", "subtitle": "500ml"},
-    {"title": "11am - 2pm", "subtitle": "1000ml"},
-    {"title": "2pm - 4pm", "subtitle": "700ml"},
-    {"title": "4pm - now", "subtitle": "900ml"}
+    {"title": "6:00 - 8:00", "subtitle": "600мл"},
+    {"title": "9:00 - 11:00", "subtitle": "500мл"},
+    {"title": "11:00 - 14:00", "subtitle": "1000мл"},
+    {"title": "14:00 - 16:00", "subtitle": "700мл"},
+    {"title": "16:00 - сейчас", "subtitle": "900мл"}
   ];
 
   List<LineChartBarData> get lineBarsData1 => [
-    lineChartBarData1_1,
-    lineChartBarData1_2,
-  ];
+        lineChartBarData1_1,
+        lineChartBarData1_2,
+      ];
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-    isCurved: true,
-    gradient: LinearGradient(colors: [
-      AppColors.primaryColor2.withOpacity(0.5),
-      AppColors.primaryColor1.withOpacity(0.5),
-    ]),
-    barWidth: 4,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
-    spots: const [
-      FlSpot(1, 35),
-      FlSpot(2, 70),
-      FlSpot(3, 40),
-      FlSpot(4, 80),
-      FlSpot(5, 25),
-      FlSpot(6, 70),
-      FlSpot(7, 35),
-    ],
-  );
+        isCurved: true,
+        gradient: LinearGradient(colors: [
+          AppColors.primaryColor2.withOpacity(0.5),
+          AppColors.primaryColor1.withOpacity(0.5),
+        ]),
+        barWidth: 4,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: const [
+          FlSpot(1, 35),
+          FlSpot(2, 70),
+          FlSpot(3, 40),
+          FlSpot(4, 80),
+          FlSpot(5, 25),
+          FlSpot(6, 70),
+          FlSpot(7, 35),
+        ],
+      );
 
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
-    isCurved: true,
-    gradient: LinearGradient(colors: [
-      AppColors.secondaryColor2.withOpacity(0.5),
-      AppColors.secondaryColor1.withOpacity(0.5),
-    ]),
-    barWidth: 2,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(
-      show: false,
-    ),
-    spots: const [
-      FlSpot(1, 80),
-      FlSpot(2, 50),
-      FlSpot(3, 90),
-      FlSpot(4, 40),
-      FlSpot(5, 80),
-      FlSpot(6, 35),
-      FlSpot(7, 60),
-    ],
-  );
+        isCurved: true,
+        gradient: LinearGradient(colors: [
+          AppColors.secondaryColor2.withOpacity(0.5),
+          AppColors.secondaryColor1.withOpacity(0.5),
+        ]),
+        barWidth: 2,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: false,
+        ),
+        spots: const [
+          FlSpot(1, 80),
+          FlSpot(2, 50),
+          FlSpot(3, 90),
+          FlSpot(4, 40),
+          FlSpot(5, 80),
+          FlSpot(6, 35),
+          FlSpot(7, 60),
+        ],
+      );
 
   List lastWorkoutArr = [
     {
-      "name": "Full Body Workout",
+      "name": "Полный комплекс упражнений",
       "image": "assets/images/Workout1.png",
       "kcal": "180",
       "time": "20",
       "progress": 0.3
     },
     {
-      "name": "Lower Body Workout",
+      "name": "Упражнения для нижней части тела",
       "image": "assets/images/Workout2.png",
       "kcal": "200",
       "time": "30",
       "progress": 0.4
     },
     {
-      "name": "Ab Workout",
+      "name": "Упражнения для пресса",
       "image": "assets/images/Workout3.png",
       "kcal": "300",
       "time": "40",
@@ -143,7 +139,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-
     final lineBarsData = [
       LineChartBarData(
         showingIndicators: showingTooltipOnSpots,
@@ -166,7 +161,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final tooltipsOnBar = lineBarsData[0];
 
-
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: SafeArea(
@@ -183,14 +177,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome Back,",
+                          "Добро пожаловать обратно,",
                           style: TextStyle(
                             color: AppColors.midGrayColor,
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          "Stefani Wong",
+                          "Степан Меньшиков",
                           style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 20,
@@ -202,7 +196,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, NotificationScreen.routeName);
+                          Navigator.pushNamed(
+                              context, NotificationScreen.routeName);
                         },
                         icon: Image.asset(
                           "assets/icons/notification_icon.png",
@@ -239,14 +234,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "BMI (Body Mass Index)",
+                                  "ИМТ (Индекс массы тела)",
                                   style: TextStyle(
-                                      color: AppColors.whiteColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                    color: AppColors.whiteColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                                 Text(
-                                  "You have a normal weight",
+                                  "У вас нормальный вес",
                                   style: TextStyle(
                                     color:
                                         AppColors.whiteColor.withOpacity(0.7),
@@ -262,7 +258,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 35,
                                     width: 100,
                                     child: RoundButton(
-                                        title: "View More", onPressed: () {}),
+                                      title: "Подробнее",
+                                      onPressed: () {},
+                                    ),
                                   ),
                                 )
                               ],
@@ -295,13 +293,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                      color: AppColors.primaryColor1.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(15)),
+                    color: AppColors.primaryColor1.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Today Target",
+                        "Цель на сегодня",
                         style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 14,
@@ -312,10 +311,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 75,
                         height: 30,
                         child: RoundButton(
-                          title: "check",
+                          title: "проверить",
                           type: RoundButtonType.primaryBG,
                           onPressed: () {
-                            Navigator.pushNamed(context, ActivityTrackerScreen.routeName);
+                            Navigator.pushNamed(
+                                context, ActivityTrackerScreen.routeName);
                           },
                         ),
                       )
@@ -324,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: media.width * 0.05),
                 Text(
-                  "Activity Status",
+                  "Статус активности",
                   style: TextStyle(
                     color: AppColors.blackColor,
                     fontSize: 16,
@@ -338,8 +338,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: media.width * 0.4,
                     width: media.width,
                     decoration: BoxDecoration(
-                        color: AppColors.primaryColor2.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(25)),
+                      color: AppColors.primaryColor2.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                     child: Stack(
                       alignment: Alignment.topLeft,
                       children: [
@@ -351,11 +352,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Heart Rate",
+                                "Частота сердечных сокращений",
                                 style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500),
+                                  color: AppColors.blackColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                               SizedBox(height: media.width * 0.01),
                               ShaderMask(
@@ -369,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           0, 0, bounds.width, bounds.height));
                                 },
                                 child: Text(
-                                  "78 BPM",
+                                  "78 уд/мин",
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 18,
@@ -407,13 +409,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   showingTooltipOnSpots.clear();
                                   setState(() {
                                     showingTooltipOnSpots.add(spotIndex);
-
-                                    // if (showingTooltipOnSpots
-                                    //     .contains(spotIndex)) {
-                                    //   showingTooltipOnSpots.remove(spotIndex);
-                                    // } else {
-                                    //   showingTooltipOnSpots.add(spotIndex);
-                                    // }
                                   });
                                 }
                               },
@@ -454,12 +449,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     (List<LineBarSpot> lineBarsSpot) {
                                   return lineBarsSpot.map((lineBarSpot) {
                                     return LineTooltipItem(
-                                      //lineBarSpot.y.toString(),
-                                      "${lineBarSpot.x.toInt()} mins ago",
+                                      "${lineBarSpot.x.toInt()} мин назад",
                                       const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w400),
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     );
                                   }).toList();
                                 },
@@ -486,298 +481,322 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Expanded(
-                        child: Container(
-                      height: media.width * 0.95,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 25, horizontal: 10),
-                      decoration: BoxDecoration(
+                      child: Container(
+                        height: media.width * 0.95,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 25, horizontal: 10),
+                        decoration: BoxDecoration(
                           color: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(color: Colors.black12, blurRadius: 2)
-                          ]),
-                      child: Row(children: [
-                        SimpleAnimationProgressBar(
-                          height: media.width * 0.9,
-                          width: media.width * 0.07,
-                          backgroundColor: Colors.grey.shade100,
-                          foregrondColor: Colors.purple,
-                          ratio: 0.5,
-                          direction: Axis.vertical,
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          duration: const Duration(seconds: 3),
-                          borderRadius: BorderRadius.circular(30),
-                          gradientColor: LinearGradient(
-                              colors: AppColors.primaryG,
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter),
+                          ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
                           children: [
-                            Text(
-                              "Water Intake",
-                              style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: media.width * 0.01),
-                            ShaderMask(
-                              blendMode: BlendMode.srcIn,
-                              shaderCallback: (bounds) {
-                                return LinearGradient(
-                                        colors: AppColors.primaryG,
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight)
-                                    .createShader(Rect.fromLTRB(
-                                        0, 0, bounds.width, bounds.height));
-                              },
-                              child: Text(
-                                "4 Liters",
-                                style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                            SimpleAnimationProgressBar(
+                              height: media.width * 0.9,
+                              width: media.width * 0.07,
+                              backgroundColor: Colors.grey.shade100,
+                              foregrondColor: Colors.purple,
+                              ratio: 0.5,
+                              direction: Axis.vertical,
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              duration: const Duration(seconds: 3),
+                              borderRadius: BorderRadius.circular(30),
+                              gradientColor: LinearGradient(
+                                colors: AppColors.primaryG,
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
                               ),
                             ),
-                            SizedBox(height: media.width * 0.03),
-                            Text(
-                              "Real time updates",
-                              style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(height: media.width * 0.01),
-                            Column(
-                              children: waterArr.map((obj) {
-                                var isLast = obj == waterArr.last;
-                                return Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Потребление воды",
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: media.width * 0.01),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) {
+                                      return LinearGradient(
+                                              colors: AppColors.primaryG,
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight)
+                                          .createShader(Rect.fromLTRB(0, 0,
+                                              bounds.width, bounds.height));
+                                    },
+                                    child: Text(
+                                      "4 Литра",
+                                      style: TextStyle(
+                                        color: AppColors.blackColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: media.width * 0.03),
+                                  Text(
+                                    "Реальные обновления",
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(height: media.width * 0.01),
+                                  Column(
+                                    children: waterArr.map((obj) {
+                                      var isLast = obj == waterArr.last;
+                                      return Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            margin: EdgeInsets.symmetric(
-                                                vertical: 6),
-                                            width: 10,
-                                            height: 10,
-                                            decoration: BoxDecoration(
-                                                color: AppColors.secondaryColor1
-                                                    .withOpacity(0.5),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    vertical: 6),
+                                                width: 10,
+                                                height: 10,
+                                                decoration: BoxDecoration(
+                                                  color: AppColors
+                                                      .secondaryColor1
+                                                      .withOpacity(0.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                              ),
+                                              if (!isLast)
+                                                DottedDashedLine(
+                                                  width: 0,
+                                                  height: media.width * 0.078,
+                                                  axis: Axis.vertical,
+                                                  dashColor: AppColors
+                                                      .secondaryColor1
+                                                      .withOpacity(0.5),
+                                                )
+                                            ],
                                           ),
-                                          if (!isLast)
-                                            DottedDashedLine(
-                                              width: 0,
-                                              height: media.width * 0.078,
-                                              axis: Axis.vertical,
-                                              dashColor: AppColors
-                                                  .secondaryColor1
-                                                  .withOpacity(0.5),
-                                            )
-                                        ]),
-                                    SizedBox(width: 10),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(height: media.width * 0.01),
-                                        Text(
-                                          obj["title"].toString(),
-                                          style: TextStyle(
-                                              color: AppColors.blackColor,
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        SizedBox(height: 1),
-                                        ShaderMask(
-                                          blendMode: BlendMode.srcIn,
-                                          shaderCallback: (bounds) {
-                                            return LinearGradient(
-                                                    colors:
-                                                        AppColors.secondaryG,
-                                                    begin: Alignment.centerLeft,
-                                                    end: Alignment.centerRight)
-                                                .createShader(Rect.fromLTRB(
-                                                    0,
-                                                    0,
-                                                    bounds.width,
-                                                    bounds.height));
-                                          },
-                                          child: Text(
-                                            obj["subtitle"].toString(),
-                                            style: TextStyle(
-                                              color: AppColors.blackColor,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                );
-                              }).toList(),
+                                          SizedBox(width: 10),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                  height: media.width * 0.01),
+                                              Text(
+                                                obj["title"].toString(),
+                                                style: TextStyle(
+                                                  color: AppColors.blackColor,
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              SizedBox(height: 1),
+                                              ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (bounds) {
+                                                  return LinearGradient(
+                                                          colors: AppColors
+                                                              .secondaryG,
+                                                          begin: Alignment
+                                                              .centerLeft,
+                                                          end: Alignment
+                                                              .centerRight)
+                                                      .createShader(
+                                                          Rect.fromLTRB(
+                                                              0,
+                                                              0,
+                                                              bounds.width,
+                                                              bounds.height));
+                                                },
+                                                child: Text(
+                                                  obj["subtitle"].toString(),
+                                                  style: TextStyle(
+                                                    color: AppColors.blackColor,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      );
+                                    }).toList(),
+                                  )
+                                ],
+                              ),
                             )
                           ],
-                        ))
-                      ]),
-                    )),
+                        ),
+                      ),
+                    ),
                     SizedBox(width: media.width * 0.05),
                     Expanded(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: double.maxFinite,
-                          height: media.width * 0.45,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 25, horizontal: 20),
-                          decoration: BoxDecoration(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: double.maxFinite,
+                            height: media.width * 0.45,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 25, horizontal: 20),
+                            decoration: BoxDecoration(
                               color: AppColors.whiteColor,
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(color: Colors.black12, blurRadius: 2)
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Sleep",
-                                style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: media.width * 0.01),
-                              ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (bounds) {
-                                  return LinearGradient(
-                                          colors: AppColors.primaryG,
-                                          begin: Alignment.centerLeft,
-                                          end: Alignment.centerRight)
-                                      .createShader(Rect.fromLTRB(
-                                          0, 0, bounds.width, bounds.height));
-                                },
-                                child: Text(
-                                  "8h 20m",
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Сон",
                                   style: TextStyle(
                                     color: AppColors.blackColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: Image.asset(
-                                "assets/images/sleep_graph.png",
-                                width: double.maxFinite,
-                                fit: BoxFit.fitWidth,
-                              ))
-                            ],
+                                SizedBox(height: media.width * 0.01),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (bounds) {
+                                    return LinearGradient(
+                                            colors: AppColors.primaryG,
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight)
+                                        .createShader(Rect.fromLTRB(
+                                            0, 0, bounds.width, bounds.height));
+                                  },
+                                  child: Text(
+                                    "8ч 20м",
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                    child: Image.asset(
+                                  "assets/images/sleep_graph.png",
+                                  width: double.maxFinite,
+                                  fit: BoxFit.fitWidth,
+                                ))
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: media.width * 0.05),
-                        Container(
-                          width: double.maxFinite,
-                          height: media.width * 0.45,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 25, horizontal: 20),
-                          decoration: BoxDecoration(
+                          SizedBox(height: media.width * 0.05),
+                          Container(
+                            width: double.maxFinite,
+                            height: media.width * 0.45,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 25, horizontal: 20),
+                            decoration: BoxDecoration(
                               color: AppColors.whiteColor,
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(color: Colors.black12, blurRadius: 2)
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Calories",
-                                style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: media.width * 0.01),
-                              ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (bounds) {
-                                  return LinearGradient(
-                                          colors: AppColors.primaryG,
-                                          begin: Alignment.centerLeft,
-                                          end: Alignment.centerRight)
-                                      .createShader(Rect.fromLTRB(
-                                          0, 0, bounds.width, bounds.height));
-                                },
-                                child: Text(
-                                  "760 kCal",
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Калории",
                                   style: TextStyle(
                                     color: AppColors.blackColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              Spacer(),
-                              Container(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: media.width * 0.2,
-                                  height: media.width * 0.2,
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Container(
-                                        width: media.width * 0.16,
-                                        height: media.width * 0.16,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
+                                SizedBox(height: media.width * 0.01),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (bounds) {
+                                    return LinearGradient(
+                                            colors: AppColors.primaryG,
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight)
+                                        .createShader(Rect.fromLTRB(
+                                            0, 0, bounds.width, bounds.height));
+                                  },
+                                  child: Text(
+                                    "760 ккал",
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Spacer(),
+                                Container(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: media.width * 0.2,
+                                    height: media.width * 0.2,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Container(
+                                          width: media.width * 0.16,
+                                          height: media.width * 0.16,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
                                             gradient: LinearGradient(
-                                                colors: AppColors.primaryG),
+                                              colors: AppColors.primaryG,
+                                            ),
                                             borderRadius: BorderRadius.circular(
-                                                media.width * 0.075)),
-                                        child: Text("230kCal\nleft",
+                                                media.width * 0.075),
+                                          ),
+                                          child: Text(
+                                            "230ккал\nосталось",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: AppColors.whiteColor,
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400,
-                                            )),
-                                      ),
-                                      SimpleCircularProgressBar(
-                                        startAngle: -180,
-                                        progressStrokeWidth: 10,
-                                        backStrokeWidth: 10,
-                                        progressColors: AppColors.primaryG,
-                                        backColor: Colors.grey.shade100,
-                                        valueNotifier: ValueNotifier(60),
-                                      )
-                                    ],
+                                            ),
+                                          ),
+                                        ),
+                                        SimpleCircularProgressBar(
+                                          startAngle: -180,
+                                          progressStrokeWidth: 10,
+                                          backStrokeWidth: 10,
+                                          progressColors: AppColors.primaryG,
+                                          backColor: Colors.grey.shade100,
+                                          valueNotifier: ValueNotifier(60),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ))
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: media.width * 0.1),
@@ -785,7 +804,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Workout Progress",
+                      "Прогресс тренировки",
                       style: TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 16,
@@ -796,19 +815,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 35,
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: AppColors.primaryG),
-                          borderRadius: BorderRadius.circular(15)),
+                        gradient: LinearGradient(colors: AppColors.primaryG),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton(
-                          items: ["Weekly", "Monthly"]
+                          items: ["Еженедельный", "Месячный"]
                               .map((name) => DropdownMenuItem(
-                                  value: name,
-                                  child: Text(
-                                    name,
-                                    style: const TextStyle(
+                                    value: name,
+                                    child: Text(
+                                      name,
+                                      style: const TextStyle(
                                         color: AppColors.blackColor,
-                                        fontSize: 14),
-                                  )))
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
                               .toList(),
                           onChanged: (value) {},
                           icon: Icon(Icons.expand_more,
@@ -830,7 +852,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: LineChart(
                       LineChartData(
                         showingTooltipIndicators:
-                        showingTooltipOnSpots.map((index) {
+                            showingTooltipOnSpots.map((index) {
                           return ShowingTooltipIndicators([
                             LineBarSpot(
                               tooltipsOnBar,
@@ -876,12 +898,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   show: true,
                                   getDotPainter:
                                       (spot, percent, barData, index) =>
-                                      FlDotCirclePainter(
-                                        radius: 3,
-                                        color: Colors.white,
-                                        strokeWidth: 3,
-                                        strokeColor: AppColors.secondaryColor1,
-                                      ),
+                                          FlDotCirclePainter(
+                                    radius: 3,
+                                    color: Colors.white,
+                                    strokeWidth: 3,
+                                    strokeColor: AppColors.secondaryColor1,
+                                  ),
                                 ),
                               );
                             }).toList();
@@ -970,7 +992,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       var wObj = lastWorkoutArr[index] as Map? ?? {};
                       return InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, FinishWorkoutScreen.routeName);
+                            Navigator.pushNamed(
+                                context, FinishWorkoutScreen.routeName);
                           },
                           child: WorkoutRow(wObj: wObj));
                     }),
@@ -1000,7 +1023,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: '',
                 radius: 55,
                 titlePositionPercentageOffset: 0.55,
-                badgeWidget: Text("20.1", style: TextStyle(
+                badgeWidget: Text(
+                  "20.1",
+                  style: TextStyle(
                       color: AppColors.whiteColor,
                       fontWeight: FontWeight.w700,
                       fontSize: 12),
@@ -1021,11 +1046,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   SideTitles get rightTitles => SideTitles(
-    getTitlesWidget: rightTitleWidgets,
-    showTitles: true,
-    interval: 20,
-    reservedSize: 40,
-  );
+        getTitlesWidget: rightTitleWidgets,
+        showTitles: true,
+        interval: 20,
+        reservedSize: 40,
+      );
 
   Widget rightTitleWidgets(double value, TitleMeta meta) {
     String text;
@@ -1061,11 +1086,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   SideTitles get bottomTitles => SideTitles(
-    showTitles: true,
-    reservedSize: 32,
-    interval: 1,
-    getTitlesWidget: bottomTitleWidgets,
-  );
+        showTitles: true,
+        reservedSize: 32,
+        interval: 1,
+        getTitlesWidget: bottomTitleWidgets,
+      );
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     var style = TextStyle(
