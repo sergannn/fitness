@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/activity_tracker/activity_tracker_screen.dart';
@@ -5,6 +7,7 @@ import 'package:fitnessapp/view/finish_workout/finish_workout_screen.dart';
 import 'package:fitnessapp/view/home/widgets/workout_row.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import '../../common_widgets/round_button.dart';
@@ -20,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late Future<SharedPreferences> _prefsFuture;
   List<int> showingTooltipOnSpots = [21];
   List<FlSpot> get allSpots => const [
         FlSpot(0, 20),
@@ -60,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
     {"title": "9:00 - 11:00", "subtitle": "500мл"},
     {"title": "11:00 - 14:00", "subtitle": "1000мл"},
     {"title": "14:00 - 16:00", "subtitle": "700мл"},
-    {"title": "16:00 - сейчас", "subtitle": "900мл"}
   ];
 
   List<LineChartBarData> get lineBarsData1 => [
@@ -135,6 +138,56 @@ class _HomeScreenState extends State<HomeScreen> {
       "progress": 0.7
     },
   ];
+  Widget krug(media) {
+    return Container(
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: media.width * 0.2,
+        height: media.width * 0.2,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: media.width * 0.16,
+              height: media.width * 0.16,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: AppColors.primaryG,
+                ),
+                borderRadius: BorderRadius.circular(media.width * 0.075),
+              ),
+              child: Text(
+                "230ккал\nосталось",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.whiteColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ), //внутренний
+            SimpleCircularProgressBar(
+              size: media.width * 0.25,
+              startAngle: -180,
+              progressStrokeWidth: 6,
+              backStrokeWidth: 6,
+              progressColors: AppColors.primaryG,
+              backColor: Colors.red.shade100,
+              valueNotifier: ValueNotifier(60),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _prefsFuture = SharedPreferences.getInstance();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,21 +230,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Добро пожаловать обратно,",
+                          "Добро пожаловать обратно!",
                           style: TextStyle(
                             color: AppColors.midGrayColor,
                             fontSize: 12,
                           ),
                         ),
-                        Text(
-                          "Степан Меньшиков",
-                          style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 20,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
                       ],
                     ),
                     IconButton(
@@ -241,16 +285,50 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                Text(
-                                  "У вас нормальный вес",
-                                  style: TextStyle(
-                                    color:
-                                        AppColors.whiteColor.withOpacity(0.7),
-                                    fontSize: 12,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
+                                FutureBuilder<SharedPreferences>(
+                                    future: _prefsFuture,
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData) {
+                                        return const CircularProgressIndicator();
+                                      }
+                                      print("here");
+                                      final prefs = snapshot.data!;
+                                      //if(prefs!=null)
+                                      if (prefs.getString("userProfile") ==
+                                          null) {
+                                        return Text(
+                                          "У вас нормальный вес",
+                                          style: TextStyle(
+                                            color: AppColors.whiteColor
+                                                .withOpacity(0.7),
+                                            fontSize: 12,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        );
+                                      } else {
+                                        return Text(
+                                          (int.parse(jsonDecode(prefs.getString(
+                                                                  'userProfile')
+                                                              as String)[
+                                                          'weight']) /
+                                                      int.parse(jsonDecode(prefs
+                                                              .getString(
+                                                                  'userProfile')
+                                                          as String)['height']))
+                                                  .toStringAsFixed(4) +
+                                              '\n' +
+                                              "У вас нормальный вес",
+                                          style: TextStyle(
+                                            color: AppColors.whiteColor
+                                                .withOpacity(0.7),
+                                            fontSize: 12,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        );
+                                      }
+                                    }),
                                 SizedBox(height: media.width * 0.05),
                                 Padding(
                                   padding: const EdgeInsets.all(0),
@@ -290,38 +368,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor1.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Цель на сегодня",
-                        style: TextStyle(
-                          color: AppColors.blackColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 75,
-                        height: 30,
-                        child: RoundButton(
-                          title: "проверить",
-                          type: RoundButtonType.primaryBG,
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, ActivityTrackerScreen.routeName);
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                ),
                 SizedBox(height: media.width * 0.05),
                 Text(
                   "Статус активности",
@@ -329,152 +375,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: AppColors.blackColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(height: media.width * 0.02),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
-                    height: media.width * 0.4,
-                    width: media.width,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor2.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Stack(
-                      alignment: Alignment.topLeft,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Частота сердечных сокращений",
-                                style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(height: media.width * 0.01),
-                              ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (bounds) {
-                                  return LinearGradient(
-                                          colors: AppColors.primaryG,
-                                          begin: Alignment.centerLeft,
-                                          end: Alignment.centerRight)
-                                      .createShader(Rect.fromLTRB(
-                                          0, 0, bounds.width, bounds.height));
-                                },
-                                child: Text(
-                                  "78 уд/мин",
-                                  style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        LineChart(
-                          LineChartData(
-                            showingTooltipIndicators:
-                                showingTooltipOnSpots.map((index) {
-                              return ShowingTooltipIndicators([
-                                LineBarSpot(
-                                  tooltipsOnBar,
-                                  lineBarsData.indexOf(tooltipsOnBar),
-                                  tooltipsOnBar.spots[index],
-                                ),
-                              ]);
-                            }).toList(),
-                            lineTouchData: LineTouchData(
-                              enabled: true,
-                              handleBuiltInTouches: false,
-                              touchCallback: (FlTouchEvent event,
-                                  LineTouchResponse? response) {
-                                if (response == null ||
-                                    response.lineBarSpots == null) {
-                                  return;
-                                }
-                                if (event is FlTapUpEvent) {
-                                  final spotIndex =
-                                      response.lineBarSpots!.first.spotIndex;
-                                  showingTooltipOnSpots.clear();
-                                  setState(() {
-                                    showingTooltipOnSpots.add(spotIndex);
-                                  });
-                                }
-                              },
-                              mouseCursorResolver: (FlTouchEvent event,
-                                  LineTouchResponse? response) {
-                                if (response == null ||
-                                    response.lineBarSpots == null) {
-                                  return SystemMouseCursors.basic;
-                                }
-                                return SystemMouseCursors.click;
-                              },
-                              getTouchedSpotIndicator:
-                                  (LineChartBarData barData,
-                                      List<int> spotIndexes) {
-                                return spotIndexes.map((index) {
-                                  return TouchedSpotIndicatorData(
-                                    FlLine(
-                                      color: Colors.transparent,
-                                    ),
-                                    FlDotData(
-                                      show: true,
-                                      getDotPainter:
-                                          (spot, percent, barData, index) =>
-                                              FlDotCirclePainter(
-                                        radius: 3,
-                                        color: Colors.white,
-                                        strokeWidth: 2,
-                                        strokeColor: AppColors.secondaryColor2,
-                                      ),
-                                    ),
-                                  );
-                                }).toList();
-                              },
-                              touchTooltipData: LineTouchTooltipData(
-                                tooltipBgColor: AppColors.secondaryColor1,
-                                tooltipRoundedRadius: 20,
-                                getTooltipItems:
-                                    (List<LineBarSpot> lineBarsSpot) {
-                                  return lineBarsSpot.map((lineBarSpot) {
-                                    return LineTooltipItem(
-                                      "${lineBarSpot.x.toInt()} мин назад",
-                                      const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    );
-                                  }).toList();
-                                },
-                              ),
-                            ),
-                            lineBarsData: lineBarsData,
-                            minY: 0,
-                            maxY: 130,
-                            titlesData: FlTitlesData(show: false),
-                            gridData: FlGridData(show: false),
-                            borderData: FlBorderData(
-                              show: true,
-                              border: Border.all(
-                                color: Colors.transparent,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
@@ -513,6 +413,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(width: 10),
                             Expanded(
                               child: Column(
+                                mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -750,47 +651,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Spacer(),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: media.width * 0.2,
-                                    height: media.width * 0.2,
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Container(
-                                          width: media.width * 0.16,
-                                          height: media.width * 0.16,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: AppColors.primaryG,
-                                            ),
-                                            borderRadius: BorderRadius.circular(
-                                                media.width * 0.075),
-                                          ),
-                                          child: Text(
-                                            "230ккал\nосталось",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: AppColors.whiteColor,
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                        SimpleCircularProgressBar(
-                                          startAngle: -180,
-                                          progressStrokeWidth: 10,
-                                          backStrokeWidth: 10,
-                                          progressColors: AppColors.primaryG,
-                                          backColor: Colors.grey.shade100,
-                                          valueNotifier: ValueNotifier(60),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                SizedBox(height: 10),
+                                krug(media)
                               ],
                             ),
                           )
@@ -835,7 +697,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onChanged: (value) {},
                           icon: Icon(Icons.expand_more,
                               color: AppColors.whiteColor),
-                          hint: Text("Weekly",
+                          hint: Text("Неделя",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: AppColors.whiteColor, fontSize: 12)),
@@ -965,22 +827,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Latest Workout",
+                      "Завершенные тренировки",
                       style: TextStyle(
                           color: AppColors.blackColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w700),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "See More",
-                        style: TextStyle(
-                            color: AppColors.grayColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    )
                   ],
                 ),
                 ListView.builder(
@@ -1100,25 +952,25 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget text;
     switch (value.toInt()) {
       case 1:
-        text = Text('Sun', style: style);
+        text = Text('Вс', style: style);
         break;
       case 2:
-        text = Text('Mon', style: style);
+        text = Text('Пн', style: style);
         break;
       case 3:
-        text = Text('Tue', style: style);
+        text = Text('Вт', style: style);
         break;
       case 4:
-        text = Text('Wed', style: style);
+        text = Text('Ср', style: style);
         break;
       case 5:
-        text = Text('Thu', style: style);
+        text = Text('Чт', style: style);
         break;
       case 6:
-        text = Text('Fri', style: style);
+        text = Text('Пт', style: style);
         break;
       case 7:
-        text = Text('Sat', style: style);
+        text = Text('Сб', style: style);
         break;
       default:
         text = const Text('');

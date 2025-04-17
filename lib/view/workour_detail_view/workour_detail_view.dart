@@ -31,7 +31,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
 
   List youArr = [
     {"image": "assets/icons/barbell.png", "title": "Гантели"},
-    {"image": "assets/icons/skipping_rope.png", "title": "Прыгалка"},
+    {"image": "assets/icons/skipping_rope.png", "title": "Прыжки"},
     {"image": "assets/icons/bottle.png", "title": "Бутылка 1 литр"},
   ];
 
@@ -48,11 +48,6 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
           "image": "assets/images/img_2.png",
           "title": "Прыжки на месте",
           "value": "12x"
-        },
-        {
-          "image": "assets/images/img_1.png",
-          "title": "Прыгалка",
-          "value": "15x"
         },
         {
           "image": "assets/images/img_2.png",
@@ -83,11 +78,6 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
           "image": "assets/images/img_2.png",
           "title": "Прыжки на месте",
           "value": "12x"
-        },
-        {
-          "image": "assets/images/img_1.png",
-          "title": "Прыгалка",
-          "value": "15x"
         },
         {
           "image": "assets/images/img_2.png",
@@ -243,6 +233,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                         time: "5/27, 09:00",
                         color: AppColors.primaryColor2.withOpacity(0.3),
                         onPressed: () {
+                          return;
                           Navigator.pushNamed(
                               context, WorkoutScheduleView.routeName);
                         },
@@ -251,7 +242,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       IconTitleNextRow(
                         icon: "assets/icons/difficulity_icon.png",
                         title: "Сложность",
-                        time: "Новичок",
+                        time: "Легкая",
                         color: AppColors.secondaryColor2.withOpacity(0.3),
                         onPressed: () {},
                       ),
@@ -266,14 +257,6 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "${youArr.length} предметов",
-                              style: TextStyle(
-                                  color: AppColors.grayColor, fontSize: 12),
-                            ),
-                          )
                         ],
                       ),
                       SizedBox(
@@ -333,7 +316,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              "${youArr.length} подходов",
+                              "${youArr.length} подхода",
                               style: TextStyle(
                                   color: AppColors.grayColor, fontSize: 12),
                             ),
@@ -350,6 +333,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           return ExercisesSetSection(
                             sObj: sObj,
                             onPressed: (obj) {
+                              return;
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

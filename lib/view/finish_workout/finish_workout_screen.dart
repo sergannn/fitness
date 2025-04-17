@@ -19,20 +19,19 @@ class FinishWorkoutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Image.asset(
                 "assets/images/complete_workout.png",
                 height: media.width * 0.8,
                 fit: BoxFit.fitHeight,
               ),
-
               const SizedBox(
                 height: 20,
               ),
-
               Text(
-                "Congratulations, You Have Finished Your Workout",
+                "Поздравляем, вы прошли тренировку",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.blackColor,
@@ -40,40 +39,26 @@ class FinishWorkoutScreen extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-
               const SizedBox(
                 height: 20,
               ),
-
               Text(
-                "Exercises is king and nutrition is queen. Combine the two and you will have a kingdom",
+                "В здоровом теле - здоровый дух",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.grayColor,
                   fontSize: 12,
                 ),
               ),
-
               const SizedBox(
                 height: 8,
               ),
-
-              Text(
-                "-Jack Lalanne",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.grayColor,
-                  fontSize: 12,
-                ),
-              ),
-
               const Spacer(),
               RoundGradientButton(
-                  title: "Back To Home",
+                  title: "Назад",
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-
               const SizedBox(
                 height: 8,
               ),

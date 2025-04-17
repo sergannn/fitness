@@ -13,23 +13,19 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   List photoArr = [
     {
-      "time": "Сладкое",
+      "time": [
+        "Лавандовый \n торт",
+        "Малиновый \n пирог",
+        "С семенами \nчиа",
+        "Фисташковый \n чизкейк"
+      ],
       "photo": [
-        "assets/images/pp_1.png",
-        "assets/images/pp_2.png",
-        "assets/images/pp_3.png",
-        "assets/images/pp_4.png",
+        "assets/images/photo1.jpg",
+        "assets/images/photo2.jpg",
+        "assets/images/photo3.jpg",
+        "assets/images/photo4.jpg",
       ]
     },
-    {
-      "time": "Бобовые",
-      "photo": [
-        "assets/images/pp_5.png",
-        "assets/images/pp_6.png",
-        "assets/images/pp_7.png",
-        "assets/images/pp_8.png",
-      ]
-    }
   ];
 
   @override
@@ -132,78 +128,81 @@ class _CameraScreenState extends State<CameraScreen> {
                           AppColors.primaryColor1.withOpacity(0.4)
                         ]),
                         borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Следите за информацией в календаре",
-                                style: TextStyle(
-                                  color: AppColors.blackColor,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              const Spacer(),
-                              SizedBox(
-                                width: 110,
-                                height: 35,
-                                child: RoundButton(
-                                    title: "Подробнее", onPressed: () {}),
-                              )
-                            ]),
-                        Image.asset(
-                          "assets/images/progress_each_photo.png",
-                          width: media.width * 0.35,
-                        )
-                      ],
+                    child: Image.asset(
+                      "assets/images/progress_each_photo.png",
+                      height: media.width * 0.2,
                     ),
+                    // const Spacer(),
                   ),
                 ),
                 SizedBox(
                   height: media.width * 0.05,
                 ),
-                /* Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  padding:
-                  const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor2.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Compare my Photo",
-                        style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        width: 100,
-                        height: 25,
-                        child: RoundButton(
-                          title: "Compare",
-                          onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) =>
-                            //     const ComparisonView(),
-                            //   ),
-                            // );
-                          },
+                Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Правильное питание и регулярные занятия физкультурой - это ключ к здоровью и энергии. Вот основные принципы здорового образа жизни:',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black87,
+                          ),
+                          textAlign: TextAlign.justify,
                         ),
-                      )
-                    ],
-                  ),
-                ),*/
+                        SizedBox(height: 16),
+                        Text(
+                          'Правильное питание:',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          '• Ешьте 3-4 раза в день в одно и то же время\n'
+                          '• Пейте достаточно воды\n'
+                          '• Включайте в рацион фрукты, овощи и цельнозерновые продукты\n'
+                          '• Избегайте вредных перекусов и фастфуда',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Физическая активность:',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          '• Занимайтесь спортом регулярно\n'
+                          '• Начинайте с небольших нагрузок\n'
+                          '• Слушайте свое тело\n'
+                          '• Делайте перерывы между тренировками',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Помните: здоровый образ жизни - это не диета или изнурительные тренировки, а привычка заботиться о себе. Начните с малого и постепенно наращивайте нагрузку. Главное - делать всё регулярно и с удовольствием!',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    )),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -211,7 +210,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Продукты",
+                        "Рецепты полезных сладостей",
                         style: TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,
@@ -232,14 +231,6 @@ class _CameraScreenState extends State<CameraScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              pObj["time"].toString(),
-                              style: TextStyle(
-                                  color: AppColors.grayColor, fontSize: 12),
-                            ),
-                          ),
                           SizedBox(
                             height: 100,
                             child: ListView.builder(
@@ -247,24 +238,32 @@ class _CameraScreenState extends State<CameraScreen> {
                               padding: EdgeInsets.zero,
                               itemCount: imaArr.length,
                               itemBuilder: ((context, indexRow) {
-                                return Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.lightGrayColor,
-                                    borderRadius: BorderRadius.circular(10),
+                                return Column(children: [
+                                  Text(
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 10),
+                                    pObj["time"][indexRow].toString(),
+                                    maxLines: 3,
                                   ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      imaArr[indexRow] as String? ?? "",
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.cover,
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 4),
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.lightGrayColor,
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                  ),
-                                );
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                        imaArr[indexRow] as String? ?? "",
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )
+                                ]);
                               }),
                             ),
                           ),
@@ -277,35 +276,6 @@ class _CameraScreenState extends State<CameraScreen> {
               height: media.width * 0.05,
             ),
           ],
-        ),
-      ),
-      floatingActionButton: InkWell(
-        onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => SleepAddAlarmView(
-          //       date: _selectedDateAppBBar,
-          //     ),
-          //   ),
-          // );
-        },
-        child: Container(
-          width: 55,
-          height: 55,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: AppColors.secondaryG),
-              borderRadius: BorderRadius.circular(27.5),
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.black12, blurRadius: 5, offset: Offset(0, 2))
-              ]),
-          alignment: Alignment.center,
-          child: Icon(
-            Icons.photo_camera,
-            size: 20,
-            color: AppColors.whiteColor,
-          ),
         ),
       ),
     );

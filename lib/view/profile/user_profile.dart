@@ -60,9 +60,6 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {});
-      }),
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
@@ -76,26 +73,6 @@ class _UserProfileState extends State<UserProfile> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppColors.lightGrayColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.asset(
-                "assets/icons/more_icon.png",
-                width: 12,
-                height: 12,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -196,9 +173,7 @@ class _UserProfileState extends State<UserProfile> {
               SizedBox(height: 15),
               Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 200,
-                  ),
+
                   //    color: Colors.red,
                   // width: 15,
                   //height: MediaQuery.of(context).size.height * 0.06,
@@ -329,6 +304,20 @@ class _UserProfileState extends State<UserProfile> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 25,
+              ),
+              Container(
+                  alignment: Alignment.center,
+
+                  //    color: Colors.red,
+                  // width: 15,
+                  //height: MediaQuery.of(context).size.height * 0.06,
+                  child: RoundButton(
+                    title: "Лидерборд",
+                    type: RoundButtonType.secondaryBG,
+                    onPressed: () {},
+                  )),
               const SizedBox(
                 height: 25,
               ),

@@ -3,7 +3,6 @@ import 'package:fitnessapp/view/activity/widgets/upcoming_workout_row.dart';
 import 'package:fitnessapp/view/activity/widgets/what_train_row.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
 import '../../common_widgets/round_button.dart';
 import '../workour_detail_view/workour_detail_view.dart';
 
@@ -15,38 +14,37 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreenState extends State<ActivityScreen> {
-
   List latestArr = [
     {
       "image": "assets/images/Workout1.png",
-      "title": "Fullbody Workout",
-      "time": "Today, 03:00pm"
+      "title": "Полный комплекс упражнений",
+      "time": "Сегодня, 15:00"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Upperbody Workout",
-      "time": "June 05, 02:00pm"
+      "title": "Упражнения для верхней части тела",
+      "time": "Июнь 05, 14:00"
     },
   ];
 
   List whatArr = [
     {
       "image": "assets/images/what_1.png",
-      "title": "Fullbody Workout",
-      "exercises": "11 Exercises",
-      "time": "32mins"
+      "title": "Полный комплекс упражнений",
+      "exercises": "11 упражнений",
+      "time": "32 минуты"
     },
     {
       "image": "assets/images/what_2.png",
-      "title": "Lowebody Workout",
-      "exercises": "12 Exercises",
-      "time": "40mins"
+      "title": "Упражнения для нижней части тела",
+      "exercises": "12 упражнений",
+      "time": "40 минут"
     },
     {
       "image": "assets/images/what_3.png",
-      "title": "AB Workout",
-      "exercises": "14 Exercises",
-      "time": "20mins"
+      "title": "Пресс",
+      "exercises": "14 упражнений",
+      "time": "20 минут"
     }
   ];
 
@@ -65,32 +63,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
               elevation: 0,
               // pinned: true,
               title: const Text(
-                "Workout Tracker",
+                "Отслеживание тренировок",
                 style: TextStyle(
-                    color: AppColors.whiteColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
+                  color: AppColors.whiteColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              actions: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    margin: const EdgeInsets.all(8),
-                    height: 40,
-                    width: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: AppColors.lightGrayColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Image.asset(
-                      "assets/icons/more_icon.png",
-                      width: 15,
-                      height: 15,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                )
-              ],
             ),
             SliverAppBar(
               backgroundColor: Colors.transparent,
@@ -114,8 +93,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                           return;
                         }
                         // if (event is FlTapUpEvent) {
-                        //   final spotIndex =
-                        //       response.lineBarSpots!.first.spotIndex;
+                        //   final spotIndex = response.lineBarSpots!.first.spotIndex;
                         //   showingTooltipOnSpots.clear();
                         //   setState(() {
                         //     showingTooltipOnSpots.add(spotIndex);
@@ -133,18 +111,16 @@ class _ActivityScreenState extends State<ActivityScreen> {
                           (LineChartBarData barData, List<int> spotIndexes) {
                         return spotIndexes.map((index) {
                           return TouchedSpotIndicatorData(
-                            FlLine(
-                              color: Colors.transparent,
-                            ),
+                            FlLine(color: Colors.transparent),
                             FlDotData(
                               show: true,
                               getDotPainter: (spot, percent, barData, index) =>
                                   FlDotCirclePainter(
-                                    radius: 3,
-                                    color: Colors.white,
-                                    strokeWidth: 3,
-                                    strokeColor: AppColors.secondaryColor1,
-                                  ),
+                                radius: 3,
+                                color: Colors.white,
+                                strokeWidth: 3,
+                                strokeColor: AppColors.secondaryColor1,
+                              ),
                             ),
                           );
                         }).toList();
@@ -155,7 +131,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                         getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
                           return lineBarsSpot.map((lineBarSpot) {
                             return LineTooltipItem(
-                              "${lineBarSpot.x.toInt()} mins ago",
+                              "${lineBarSpot.x.toInt()} мин назад",
                               const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
@@ -170,15 +146,16 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     minY: -0.5,
                     maxY: 110,
                     titlesData: FlTitlesData(
-                        show: true,
-                        leftTitles: AxisTitles(),
-                        topTitles: AxisTitles(),
-                        bottomTitles: AxisTitles(
-                          sideTitles: bottomTitles,
-                        ),
-                        rightTitles: AxisTitles(
-                          sideTitles: rightTitles,
-                        )),
+                      show: true,
+                      leftTitles: AxisTitles(),
+                      topTitles: AxisTitles(),
+                      bottomTitles: AxisTitles(
+                        sideTitles: bottomTitles,
+                      ),
+                      rightTitles: AxisTitles(
+                        sideTitles: rightTitles,
+                      ),
+                    ),
                     gridData: FlGridData(
                       show: true,
                       drawHorizontalLine: true,
@@ -200,199 +177,156 @@ class _ActivityScreenState extends State<ActivityScreen> {
                   ),
                 ),
               ),
-            )
+            ),
           ];
         },
         body: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+          ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Container(
                     width: 50,
                     height: 4,
                     decoration: BoxDecoration(
-                        color: AppColors.grayColor.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(3)),
-                  ),
-                  SizedBox(
-                    height: media.width * 0.05,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 15),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor2.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Daily Workout Schedule",
-                          style: TextStyle(
-                              color: AppColors.blackColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
-                        ),
-                        SizedBox(
-                          width: 70,
-                          height: 25,
-                          child: RoundButton(
-                            title: "Check",
-                            onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         const ActivityTrackerView(),
-                              //   ),
-                              // );
-                            },
-                          ),
-                        )
-                      ],
+                      color: AppColors.grayColor.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                   ),
-                  SizedBox(
-                    height: media.width * 0.05,
-                  ),
+                  SizedBox(height: media.width * 0.05),
+                  SizedBox(height: media.width * 0.05),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Upcoming Workout",
+                        "Предстоящие тренировки",
                         style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "See More",
-                          style: TextStyle(
-                              color: AppColors.grayColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
+                          color: AppColors.blackColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   ListView.builder(
-                      padding: EdgeInsets.zero,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: latestArr.length,
-                      itemBuilder: (context, index) {
-                        var wObj = latestArr[index] as Map? ?? {};
-                        return UpcomingWorkoutRow(wObj: wObj);
-                      }),
-                  SizedBox(
-                    height: media.width * 0.05,
+                    padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: latestArr.length,
+                    itemBuilder: (context, index) {
+                      var wObj = latestArr[index] as Map? ?? {};
+                      return UpcomingWorkoutRow(wObj: wObj);
+                    },
                   ),
+                  SizedBox(height: media.width * 0.05),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "What Do You Want to Train",
+                        "Рекомендации",
                         style: TextStyle(
-                            color: AppColors.blackColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
+                          color: AppColors.blackColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ],
                   ),
                   ListView.builder(
-                      padding: EdgeInsets.zero,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: whatArr.length,
-                      itemBuilder: (context, index) {
-                        var wObj = whatArr[index] as Map? ?? {};
-                        return InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) =>  WorkoutDetailView( dObj: wObj, ) ));
-                            },
-                            child:  WhatTrainRow(wObj: wObj) );
-                      }),
-                  SizedBox(
-                    height: media.width * 0.1,
+                    padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: whatArr.length,
+                    itemBuilder: (context, index) {
+                      var wObj = whatArr[index] as Map? ?? {};
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      WorkoutDetailView(dObj: wObj)));
+                        },
+                        child: WhatTrainRow(wObj: wObj),
+                      );
+                    },
                   ),
+                  SizedBox(height: media.width * 0.1),
                 ],
               ),
             ),
-          )),
+          ),
+        ),
       ),
     );
   }
 
   LineTouchData get lineTouchData1 => LineTouchData(
-    handleBuiltInTouches: true,
-    touchTooltipData: LineTouchTooltipData(
-      tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-    ),
-  );
+        handleBuiltInTouches: true,
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+        ),
+      );
 
   List<LineChartBarData> get lineBarsData1 => [
-    lineChartBarData1_1,
-    lineChartBarData1_2,
-  ];
+        lineChartBarData1_1,
+        lineChartBarData1_2,
+      ];
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-    isCurved: true,
-    color: AppColors.whiteColor,
-    barWidth: 4,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(show: false),
-    spots: const [
-      FlSpot(1, 35),
-      FlSpot(2, 70),
-      FlSpot(3, 40),
-      FlSpot(4, 80),
-      FlSpot(5, 25),
-      FlSpot(6, 70),
-      FlSpot(7, 35),
-    ],
-  );
+        isCurved: true,
+        color: AppColors.whiteColor,
+        barWidth: 4,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: const [
+          FlSpot(1, 35),
+          FlSpot(2, 70),
+          FlSpot(3, 40),
+          FlSpot(4, 80),
+          FlSpot(5, 25),
+          FlSpot(6, 70),
+          FlSpot(7, 35),
+        ],
+      );
 
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
-    isCurved: true,
-    color: AppColors.whiteColor.withOpacity(0.5),
-    barWidth: 2,
-    isStrokeCapRound: true,
-    dotData: FlDotData(show: false),
-    belowBarData: BarAreaData(
-      show: false,
-    ),
-    spots: const [
-      FlSpot(1, 80),
-      FlSpot(2, 50),
-      FlSpot(3, 90),
-      FlSpot(4, 40),
-      FlSpot(5, 80),
-      FlSpot(6, 35),
-      FlSpot(7, 60),
-    ],
-  );
+        isCurved: true,
+        color: AppColors.whiteColor.withOpacity(0.5),
+        barWidth: 2,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: false,
+        ),
+        spots: const [
+          FlSpot(1, 80),
+          FlSpot(2, 50),
+          FlSpot(3, 90),
+          FlSpot(4, 40),
+          FlSpot(5, 80),
+          FlSpot(6, 35),
+          FlSpot(7, 60),
+        ],
+      );
 
   SideTitles get rightTitles => SideTitles(
-    getTitlesWidget: rightTitleWidgets,
-    showTitles: true,
-    interval: 20,
-    reservedSize: 40,
-  );
+        getTitlesWidget: rightTitleWidgets,
+        showTitles: true,
+        interval: 20,
+        reservedSize: 40,
+      );
 
   Widget rightTitleWidgets(double value, TitleMeta meta) {
     String text;
@@ -418,21 +352,22 @@ class _ActivityScreenState extends State<ActivityScreen> {
       default:
         return Container();
     }
-
-    return Text(text,
-        style: TextStyle(
-          color: AppColors.whiteColor,
-          fontSize: 12,
-        ),
-        textAlign: TextAlign.center);
+    return Text(
+      text,
+      style: TextStyle(
+        color: AppColors.whiteColor,
+        fontSize: 12,
+      ),
+      textAlign: TextAlign.center,
+    );
   }
 
   SideTitles get bottomTitles => SideTitles(
-    showTitles: true,
-    reservedSize: 32,
-    interval: 1,
-    getTitlesWidget: bottomTitleWidgets,
-  );
+        showTitles: true,
+        reservedSize: 32,
+        interval: 1,
+        getTitlesWidget: bottomTitleWidgets,
+      );
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     var style = TextStyle(
@@ -442,31 +377,30 @@ class _ActivityScreenState extends State<ActivityScreen> {
     Widget text;
     switch (value.toInt()) {
       case 1:
-        text = Text('Sun', style: style);
+        text = Text('Вс', style: style);
         break;
       case 2:
-        text = Text('Mon', style: style);
+        text = Text('Пн', style: style);
         break;
       case 3:
-        text = Text('Tue', style: style);
+        text = Text('Вт', style: style);
         break;
       case 4:
-        text = Text('Wed', style: style);
+        text = Text('Ср', style: style);
         break;
       case 5:
-        text = Text('Thu', style: style);
+        text = Text('Чт', style: style);
         break;
       case 6:
-        text = Text('Fri', style: style);
+        text = Text('Пт', style: style);
         break;
       case 7:
-        text = Text('Sat', style: style);
+        text = Text('Сб', style: style);
         break;
       default:
         text = const Text('');
         break;
     }
-
     return SideTitleWidget(
       axisSide: meta.axisSide,
       space: 10,

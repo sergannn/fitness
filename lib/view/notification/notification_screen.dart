@@ -15,34 +15,34 @@ class _NotificationScreenState extends State<NotificationScreen> {
   List notificationArr = [
     {
       "image": "assets/images/Workout1.png",
-      "title": "Hey, it’s time for lunch",
-      "time": "About 1 minutes ago"
+      "title": "Эй, пора обедать",
+      "time": "Примерно 1 минуту назад"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Don’t miss your lowerbody workout",
-      "time": "About 3 hours ago"
+      "title": "Не пропустите тренировку нижней части тела",
+      "time": "Примерно 3 часа назад"
     },
     {
       "image": "assets/images/Workout3.png",
-      "title": "Hey, let’s add some meals for your b",
-      "time": "About 3 hours ago"
+      "title": "Эй, давайте добавим несколько приемов пищи для вашего б",
+      "time": "Примерно 3 часа назад"
     },
     {
       "image": "assets/images/Workout1.png",
-      "title": "Congratulations, You have finished A..",
-      "time": "29 May"
+      "title": "Поздравляем, вы завершили А..",
+      "time": "29 мая"
     },
     {
       "image": "assets/images/Workout2.png",
-      "title": "Hey, it’s time for lunch",
-      "time": "8 April"
+      "title": "Эй, пора обедать",
+      "time": "8 апреля"
     },
     {
       "image": "assets/images/Workout3.png",
-      "title": "Ups, You have missed your Lowerbo...",
-      "time": "8 April"
-    },
+      "title": "Ой, вы пропустили тренировку нижней части тела...",
+      "time": "8 апреля"
+    }
   ];
 
   @override
@@ -74,7 +74,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
           ),
           title: const Text(
-            "Notification",
+            "Уведомления",
             style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 16,
